@@ -74,7 +74,6 @@ namespace WindowsFormsApplication1
                     mine.Text = "@";
                 else
                     mine.Text = "";
-                //Mines[x, y].Text == "" ? Mines[x, y].Text = "@" : Mines[x, y].Text = "";
                 return;
             }
 
@@ -108,13 +107,31 @@ namespace WindowsFormsApplication1
                 return;
             string around = Func.around(x, y);
             Mines[x, y].Text = around;
-
+            Mines[x, y].FlatStyle = FlatStyle.Popup;
             if (around == "0")
             {
                 for (int dx = -1; dx <= 1; dx++)
                     for (int dy = -1; dy <= 1; dy++)
                         open(x + dx, y + dy);
             }
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // Game
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "Game";
+            this.Load += new System.EventHandler(this.Game_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void Game_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
